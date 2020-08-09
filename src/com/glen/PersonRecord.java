@@ -29,20 +29,20 @@ public class PersonRecord {
         return points;
     }
 
-    public PersonRecord(String[] attributes) {
-        if (!DataManipulator.isNumber(attributes[2])) {
+    public PersonRecord(String firstName, String lastName, String date, String division, String points, String summary) {
+        if (!DataManipulator.isNumber(division)) {
             //throw division unexpected format
         }
-        if (!DataManipulator.isNumber(attributes[3])) {
+        if (!DataManipulator.isNumber(points)) {
             //throw points unexpected format
         }
 
-        this.firstName = attributes[0];
-        this.lastName = attributes[1];
-        this.date = attributes[2];
-        this.division = Integer.parseInt(attributes[3]);
-        this.points = Integer.parseInt(attributes[4]);
-        this.summary = attributes[5];
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.date = date;
+        this.division = Integer.parseInt(division);
+        this.points = Integer.parseInt(points);
+        this.summary = summary;
 
     }
 
