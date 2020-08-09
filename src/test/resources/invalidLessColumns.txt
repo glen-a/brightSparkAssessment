@@ -1,0 +1,13 @@
+lastname,date,division,points,summary
+Lowton,2017-09-15,1,53,"Defensive Duties"
+Trayes,2017-10-23,9,83,"Offensive Duties"
+Crosi,2017-10-23,6,84,"Offensive Duties"
+Dunnico,2018-02-26,5,24,"Offensive Duties"
+Collete,2017-06-19,6,68,"Oversight Duties"
+Gosson,2017-12-22,9,22,"Defensive Duties"
+Miller,2018-04-09,3,89,"Offensive Duties"
+Ivatt,2018-01-02,1,72,"Offensive Duties"
+Twidell,2017-11-17,9,72,"Offensive Duties"
+Elger,2017-05-02,6,58,"Oversight Duties"
+
+

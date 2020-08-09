@@ -13,6 +13,7 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,19 +38,31 @@ public class DataManipulator {
                 .withTrim());
         ) {
             for (CSVRecord csvRecord : csvParser) {
+                if(csvRecord.size() != 6){
+                    //log invalid row
+                    continue;
+                }
 
                 PersonRecord record = new PersonRecord(
-                        csvRecord.get("firstname"),
-                        csvRecord.get("lastname"),
-                        csvRecord.get("date"),
-                        csvRecord.get("division"),
-                        csvRecord.get("points"),
-                        csvRecord.get("summary")
+                    csvRecord.get("firstname"),
+                    csvRecord.get("lastname"),
+                    csvRecord.get("date"),
+                    csvRecord.get("division"),
+                    csvRecord.get("points"),
+                    csvRecord.get("summary")
                 );
                 records.add(record);
             }
         }  catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Invalid/missing file");
+
+            return new ArrayList<>();
+            //log exception to file
+
+        } catch (IllegalArgumentException e){
+            System.err.println("File was found but is missing CSV headings");
+            return new ArrayList<>();
+            //log missing headings/invalid headings to file
         }
 
         return records;
@@ -65,6 +78,9 @@ public class DataManipulator {
      * @return A YAML string representing the data provided
      */
     public static String getYaml(List<PersonRecord> records){
+        if(records.size() == 0)
+            return "";
+
         //exclude class names from yaml dump
         Representer representer = new Representer();
         representer.addClassTag(PersonRecord.Simple.class, Tag.MAP);
@@ -84,6 +100,19 @@ public class DataManipulator {
         String yaml = yamlProcessor.dump(rec);
 
         return yaml;
+    }
+
+    /**
+     * Sort a List of PersonRecords by Division (ascending) then Points (descending)
+     * @param personRecords the List of PersonRecords to sort
+     */
+    public static void sortByDivisionThenPoints(List<PersonRecord> personRecords){
+        //Sort by division ascending then points ascending.
+        //good explanation here https://blog.jooq.org/2014/01/31/java-8-friday-goodies-lambdas-and-sorting/
+        personRecords.sort(
+                Comparator.comparing(PersonRecord::getDivision)
+                        .thenComparing(PersonRecord::getPoints, Comparator.reverseOrder())
+        );
     }
 
     /**
