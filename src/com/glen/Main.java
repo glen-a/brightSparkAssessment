@@ -20,9 +20,17 @@ public class Main {
         List<PersonRecord> records = readRecordsFromFile(path);
         //clipboard
 
+        //Sort by division ascending then points ascending.
+        //good explanation here https://blog.jooq.org/2014/01/31/java-8-friday-goodies-lambdas-and-sorting/
+        records.sort(
+                Comparator.comparing(PersonRecord::getDivision)
+                        .thenComparing(PersonRecord::getPoints, Comparator.reverseOrder())
+        );
+
         for (PersonRecord p : records) {
             System.out.println(p);
         }
+
     }
 
 

@@ -50,13 +50,13 @@ public class PersonRecord {
         this.summary = summary.trim();
     }
 
-    String firstName;
-    String lastName;
+    private String firstName;
+    private String lastName;
     // date: String (format YYYY-MM-DD)
-    String date;
-    Integer division;
-    Integer points;
-    String summary;
+    private String date;
+    private Integer division;
+    private Integer points;
+    private String summary;
 
     public PersonRecord(String[] attributes) {
         if (!isNumber(attributes[2])) {
