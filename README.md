@@ -12,5 +12,5 @@ Code Assessment:</br>
 •	Selects the top three records.</br>
 •	Prints the records to stdout in the following YAML format:</br>
 records:</br>
-	- name: <firstname> <lastname></br>
-	  details: In division <division> from <date> performing <summary></br>
+_	- name: <firstname> <lastname></br>
+_	  details: In division <division> from <date> performing <summary></br>
