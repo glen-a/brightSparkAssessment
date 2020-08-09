@@ -1,4 +1,4 @@
-package com.glen;
+package com.java.glen;
 
 /**
  * Definition for a PersonRecord

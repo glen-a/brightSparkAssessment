@@ -1,10 +1,5 @@
-package com.glen;
-//import static org.junit.Assert.assertEquals;
-//import static org.junit.Assert.assertTrue;
-
-//import com.glen.DataManipulator;
-//import com.sun.org.apache.xpath.internal.operations.Bool;
-//import org.junit.Test;
+package test.java;
+import com.java.glen.DataManipulator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

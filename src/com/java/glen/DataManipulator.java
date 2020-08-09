@@ -1,4 +1,4 @@
-package com.glen;
+package com.java.glen;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -37,7 +37,7 @@ public class DataManipulator {
                 .withTrim());
         ) {
             for (CSVRecord csvRecord : csvParser) {
-                
+
                 PersonRecord record = new PersonRecord(
                         csvRecord.get("firstname"),
                         csvRecord.get("lastname"),
