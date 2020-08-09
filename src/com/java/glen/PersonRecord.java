@@ -49,8 +49,8 @@ public class PersonRecord {
 
     public String toString() {
         return "name : " + this.firstName + " " + this.lastName +
-                ", date: " + this.date+
-                ", summary: " + this.summary ;
+            ", date: " + this.date+
+            ", summary: " + this.summary ;
     }
 
     /**

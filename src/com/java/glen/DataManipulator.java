@@ -98,7 +98,7 @@ public class DataManipulator {
 
         Yaml yamlProcessor = new Yaml(representer, options);
 
-        //Grab the top 3 items from our list, grab the serialize object from these and cast to something snakeyaml can work with
+        //Grab the top 3 items from our list, grab the serialize object from these and cast to something SnakeYAML can work with
         //wrap in PersonRecords() for specified yaml output
         PersonRecords rec = new PersonRecords(records.stream().limit(3).map(PersonRecord::serialize).collect(Collectors.toList()));
         String yaml = yamlProcessor.dump(rec);

@@ -9,8 +9,33 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DataManipulatorTests  {
-
+    
     private static final String PATH_TO_TEST_DATA = "out\\production\\brightSparkAssessment\\test\\resources\\";
+
+    @Test
+    public  void canGetTopThreeRecordsFromCSV(){
+
+        List<PersonRecord> result = DataManipulator.readRecordsFromFile( PATH_TO_TEST_DATA + "validWithHeading.txt");
+        //sort the records
+        DataManipulator.sortByDivisionThenPoints(result);
+        //dump the top 3 records to YAML
+        String yaml =  DataManipulator.getYaml(result);
+
+
+        assertEquals(1, count(yaml, "records:"));
+
+        assertEquals(1, count(yaml, "name: Zelma Ivatt"));
+        assertEquals(1, count(yaml, "- details: In division 1 from 2018-01-02 performing Offensive Duties"));
+
+        assertEquals(1, count(yaml, "name: Terza Lowton"));
+        assertEquals(1, count(yaml, "- details: In division 1 from 2017-09-15 performing Defensive Duties"));
+
+        assertEquals(1, count(yaml, "name: Zedekiah Miller"));
+        assertEquals(1, count(yaml, "- details: In division 3 from 2018-04-09 performing Offensive Duties"));
+        assertEquals(3, count(yaml, "name:"));
+        assertEquals(3, count(yaml, "details:"));
+
+    }
 
     @Test
     public void verifyIsNumberAllDigits() {
