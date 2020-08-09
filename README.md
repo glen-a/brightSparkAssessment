@@ -1,6 +1,6 @@
 # brightSparkAssessment
 
-Code Assessment:
+Code Assessment:</br>
 •	Takes in a CSV file containing the following columns:
   o	 firstname: String
   o	lastname: String
