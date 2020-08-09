@@ -51,6 +51,10 @@ public class DataManipulator {
                     csvRecord.get("points"),
                     csvRecord.get("summary")
                 );
+
+                if(record.getDivision() == null || record.getPoints() == null)
+                    continue; //error was logged in constructor
+
                 records.add(record);
             }
         }  catch (IOException e) {
@@ -68,7 +72,7 @@ public class DataManipulator {
         return records;
     }
 
-        /**
+    /**
      * Dump a list of PersonRecords in the YAML format
      * records:
      * - name: <firstname> <lastname>
@@ -86,7 +90,7 @@ public class DataManipulator {
         representer.addClassTag(PersonRecord.Simple.class, Tag.MAP);
         representer.addClassTag(PersonRecords.class, Tag.MAP);
 
-        //remove curly braces from yaml dump and other options
+        //remove curly braces from yaml dump and setup other options
         DumperOptions options = new DumperOptions();
         options.setIndent(2);
         options.setPrettyFlow(true);
@@ -121,6 +125,6 @@ public class DataManipulator {
      * @return True if the string was digits, false if contained something other than 0-9
      */
     public static Boolean isNumber(String str) {
-        return (str.length() > 1 && str.matches("^[0-9]*$"));
+        return (str.length() > 0 && str.matches("^[0-9]*$"));
     }
 }

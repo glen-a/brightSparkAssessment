@@ -1,0 +1,4 @@
+firstname,lastname,date,division,points,summary
+Terza,Lowton,2017-09-15,1,5sad3,"Defensive Duties"
+Kayle,Trayes,2017-10-23,9,83,"Offensive Duties"
+Reba,Crosi,2017-10-23,6,eff,"Offensive Duties"

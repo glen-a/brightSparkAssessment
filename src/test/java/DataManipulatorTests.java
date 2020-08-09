@@ -6,10 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import static org.junit.jupiter.api.Assertions.*;
-
-//        //String path = "C:\Users\Glen\IdeaProjects\brightSparkAssessment\src\Resources\data.txt";
 
 public class DataManipulatorTests  {
 
@@ -96,11 +93,18 @@ public class DataManipulatorTests  {
     }
 
     @Test
+    public void canPartlyReadCSVInvalidPoints() {
+        List<PersonRecord> result = DataManipulator.readRecordsFromFile( PATH_TO_TEST_DATA + "invalidWithHeadingPointsInvalid.txt");
+
+        assertEquals(1, result.size());
+        assertEquals(83, result.get(0).getPoints());
+    }
+
+    @Test
     public void canNotReadMissingCSV() {
         List<PersonRecord> result = DataManipulator.readRecordsFromFile( PATH_TO_TEST_DATA + "asdfasd.txt");
 
         assertEquals(0, result.size());
-        //verify logs that 5 were not as expected
     }
 
     @Test
