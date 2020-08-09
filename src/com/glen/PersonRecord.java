@@ -1,54 +1,9 @@
 package com.glen;
 
+/**
+ * Definition for a PersonRecord
+ */
 public class PersonRecord {
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName.trim();
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName.trim();
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date.trim();
-    }
-
-    public Integer getDivision() {
-        return division;
-    }
-
-    public void setDivision(Integer division) {
-        this.division = division;
-    }
-
-    public Integer getPoints() {
-        return points;
-    }
-
-    public void setPoints(Integer points) {
-        this.points = points;
-    }
-
-    public String getSummary() {
-        return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary.trim();
-    }
 
     private String firstName;
     private String lastName;
@@ -58,11 +13,27 @@ public class PersonRecord {
     private Integer points;
     private String summary;
 
+    public String getFullName() {
+        return this.firstName.trim() + " " + this.lastName.trim();
+    }
+
+    public String getFullDetails(){
+        return "In division " + this.division + " from " + this.date + " performing " + this.summary;
+    }
+
+    public Integer getDivision() {
+        return division;
+    }
+
+    public Integer getPoints() {
+        return points;
+    }
+
     public PersonRecord(String[] attributes) {
-        if (!isNumber(attributes[2])) {
+        if (!DataManipulator.isNumber(attributes[2])) {
             //throw division unexpected format
         }
-        if (!isNumber(attributes[3])) {
+        if (!DataManipulator.isNumber(attributes[3])) {
             //throw points unexpected format
         }
 
@@ -75,16 +46,34 @@ public class PersonRecord {
 
     }
 
-    public String toString() {
-        return "name : " + getFirstName() + " " + getLastName() +
-                ", date: " + getDate()+
-                ", division: " + getDivision()+
-                ", points: " + getPoints()+
-                ", summary: " + getSummary() ;
+    /**
+     * Serialization class for dumping to YAML
+     * A simplified version of PersonRecord
+     */
+    public class Simple{
+        String name;
+        String details;
+
+        public void setName(String name) {
+            this.name = name;
+        }
+        public void setDetails(String details) {
+            this.details = details;
+        }
+        public String getName() {
+            return this.name;
+        }
+        public String getDetails() {
+            return this.details;
+        }
+
+        Simple(){
+            this.name = getFullName();
+            this.details = getFullDetails();
+        }
     }
 
-    //should exist in some util class
-    private Boolean isNumber(String str) {
-        return (str.length() > 1 && str.matches("^[0-9]*$"));
+    public Simple serialize(){
+        return new Simple();
     }
 }
